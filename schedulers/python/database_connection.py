@@ -22,7 +22,9 @@ def get_stock_names(query):
     except MySQLdb.Error, e:
         print("something went wrong: {}".format(e))
 
+def main():
+    query = dbQuery.DatabaseQuery.get_stocks()
+    get_stock_names(query.query_string)
 
-
-query = dbQuery.DatabaseQuery.get_stocks()
-get_stock_names(query)
+if __name__ == "__main__":
+    main()
