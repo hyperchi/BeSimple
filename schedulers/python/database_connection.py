@@ -6,6 +6,7 @@ This script will be used for database connections
 3. save data into database
 """
 import MySQLdb
+import quandl
 from databaseQuery import DatabaseQuery as dbQuery
 
 def get_stock_names(query):
@@ -21,6 +22,7 @@ def get_stock_names(query):
         db.close()
     except MySQLdb.Error, e:
         print("something went wrong: {}".format(e))
+
 
 def main():
     query = dbQuery.DatabaseQuery.get_stocks()
