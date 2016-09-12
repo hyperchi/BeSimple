@@ -18,15 +18,18 @@ def get_stock_names(query):
         db_cursor = db.cursor()
         db_cursor.execute(query)
         rows = db_cursor.fetchall()
-        print rows
         db.close()
+        return rows
     except MySQLdb.Error, e:
         print("something went wrong: {}".format(e))
 
+def read_stock_info_from_quandl(query):
+    data = get_stock_names(query.query_string)
+    print data
 
 def main():
     query = dbQuery.DatabaseQuery.get_stocks()
-    get_stock_names(query.query_string)
+    read_stock_info_from_quandl(query)
 
 if __name__ == "__main__":
     main()
