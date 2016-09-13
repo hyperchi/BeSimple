@@ -3,9 +3,10 @@ START TRANSACTION;
 
 CREATE TABLE stocks
 (
-	id VARCHAR(20) NOT NULL PRIMARY KEY,
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	ticker VARCHAR(20),
-	exchange VARCHAR(20)
+	exchange VARCHAR(20),
+    market_segment VARCHAR(20)
 );
 
 COMMIT;
@@ -14,6 +15,6 @@ COMMIT;
 
 START TRANSACTION;
 
-INSERT INTO stocks (id, ticker, exchange) VALUES(1, 'GOOGL', 'NASDAQ');
+INSERT INTO stocks (id, ticker, exchange, market_segment) VALUES(1, 'GOOGL', 'NASDAQ', 'IT');
 
 COMMIT;
