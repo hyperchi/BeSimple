@@ -15,19 +15,46 @@ class DatabaseQuery(object):
     this is a class containing off database related queries
     """
     @staticmethod
+    def stocks_schema():
+        return {
+                  "id"      : "id",
+                  "Symbol"  : "Symbol",
+                  "Exchange": "Exchange",
+                  "IPOyear" : "IPOyear",
+                  "Sector"  : "Sector",
+                  "Industry": "Industry"
+                }
+
+    @staticmethod
     def get_stocks():
         """
         get stocks from stocks table
         @ param void
         @ return object QueryData
         """
-        attributes = {"id" : "id", "ticker" : "ticker", "exchange" : "exchange"}
 
+        stocks_attributes = DatabaseQuery.stocks_schema()
         query = "SELECT id       as       {id},\
-		                ticker   as   {ticker},\
-		                exchange as {exchange}\
-		                FROM stocks".format(id=attributes["id"],
-                                            ticker=attributes["ticker"],
-                                            exchange=attributes["exchange"])
-        query_data = QueryData(query, attributes)
+		                Symbol   as   {Symbol},\
+		                Exchange as {Exchange},\
+		                IPOyear  as {IPOyear},\
+		                Sector   as {Sector},\
+                        Industry as {Industry}\
+		                FROM stocks".format(id=stocks_attributes['id'],
+                                            ticker=stocks_attributes["Symbol"],
+                                            exchange=stocks_attributes["Exchange"],
+                                            IPOyear=stocks_attributes['IPOyear'],
+                                            Sector=stocks_attributes['Sector'],
+                                            Industry=stocks_attributes['Industry'])
+        query_data = QueryData(query, stocks_attributes)
         return query_data
+
+    @staticmethod
+    def insert_stocks(data):
+        """
+        call this function to insert data into stocks
+        """
+        """
+        :return:
+        """
+        pass
