@@ -1,19 +1,17 @@
 # All indexing stocks will be added to this table
+# This is a table definition
+# @author winston chi
 START TRANSACTION;
 
 CREATE TABLE stocks
 (
-	id VARCHAR(20) NOT NULL PRIMARY KEY,
-	ticker VARCHAR(20),
-	exchange VARCHAR(20)
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	Symbol                         VARCHAR(20),
+	Name                           VARCHAR(30),
+	Exchange                       VARCHAR(20),
+    IPOyear                        VARCHAR(20),
+    Sector                         VARCHAR(30),
+    Industry                       VARCHAR(30)
 );
-
-COMMIT;
-
-# data filling
-
-START TRANSACTION;
-
-INSERT INTO stocks (id, ticker, exchange) VALUES(1, 'GOOGL', 'NASDAQ');
 
 COMMIT;
