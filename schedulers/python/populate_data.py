@@ -24,7 +24,7 @@ def open_file(file_name):
             if (row_count == 0):
                 header = row
             else:
-                data_record = {}
+                data_record = {'Exchange' : (file_name.split('.'))[0]}
                 for index, field in enumerate(header):
                     if field in attributes:
                         data_record[field] = row[index]
