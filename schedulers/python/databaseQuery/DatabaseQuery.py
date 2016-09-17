@@ -19,6 +19,7 @@ class DatabaseQuery(object):
         return {
                   "id"      : "id",
                   "Symbol"  : "Symbol",
+                  "Name"    : "Name",
                   "Exchange": "Exchange",
                   "IPOyear" : "IPOyear",
                   "Sector"  : "Sector",
@@ -36,13 +37,15 @@ class DatabaseQuery(object):
         stocks_attributes = DatabaseQuery.stocks_schema()
         query = "SELECT id       as       {id},\
 		                Symbol   as   {Symbol},\
+                        Name     as   {Name},\
 		                Exchange as {Exchange},\
 		                IPOyear  as {IPOyear},\
 		                Sector   as {Sector},\
                         Industry as {Industry}\
 		                FROM stocks".format(id=stocks_attributes['id'],
-                                            ticker=stocks_attributes["Symbol"],
-                                            exchange=stocks_attributes["Exchange"],
+                                            Symbol=stocks_attributes["Symbol"],
+                                            Name=stocks_attributes["Name"],
+                                            Exchange=stocks_attributes["Exchange"],
                                             IPOyear=stocks_attributes['IPOyear'],
                                             Sector=stocks_attributes['Sector'],
                                             Industry=stocks_attributes['Industry'])
@@ -50,11 +53,24 @@ class DatabaseQuery(object):
         return query_data
 
     @staticmethod
-    def insert_stocks(data):
+    def get_insert_stocks_query(data={}):
         """
         call this function to insert data into stocks
+        @param data is a hash table with all attributes as key
+        all values as value
         """
         """
         :return:
         """
-        pass
+        keys = "".join(str(tuple(data.keys())).split("'"))
+        values = str(tuple(data.values()))
+
+        query = "".join([
+                 "INSERT INTO stocks ",
+                 keys,
+                 " VALUES",
+                 values,
+                 ";"])
+        print query
+        return query
+
