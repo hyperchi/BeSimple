@@ -9,8 +9,8 @@ one off run
 
 def open_file(file_name):
     db = MySQLdb.connect(host="localhost",
-                             user="winstonchi",
-                             db="besimple")
+                         user="winstonchi",
+                         db="besimple")
 
     db_cursor = db.cursor()
     db.autocommit = True
@@ -24,7 +24,7 @@ def open_file(file_name):
             if (row_count == 0):
                 header = row
             else:
-                data_record = {}
+                data_record = {'Exchange' : (file_name.split('.'))[0]}
                 for index, field in enumerate(header):
                     if field in attributes:
                         data_record[field] = row[index]
@@ -41,13 +41,10 @@ def open_file(file_name):
 def main():
     """
     import three main exchange stocks to stocks table
-    :return:
-    """
-    """
-    :return:
     """
     file_names = ["nysdaq.csv", "nyse.csv", "amex.csv"]
     for file_name in file_names:
         open_file(file_name)
+
 if __name__ == "__main__":
     main()
