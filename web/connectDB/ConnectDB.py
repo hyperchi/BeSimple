@@ -1,5 +1,5 @@
 from flaskext.mysql import MySQL
-
+import json
 # a kinda dup from db should figure out how to solve this in the future
 class DBSchema(object):
     """
@@ -70,8 +70,10 @@ class ConnectDB:
     def setup_connection(self):
         return self.mysql.connect()
 
+    # this is a general one for getting data
     def execute_query(self, query):
         connection = self.setup_connection()
         cursor = connection.cursor()
         cursor.execute(query)
+        print cursor.co
         return cursor.fetchall()

@@ -1,12 +1,13 @@
-<!-- all html will be deleted in later version-->
-<html>
-<head></head>
-<body>
-<h1>just a test</h1>
-<title></title>>
-</body>
-<footer>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-</footer>
->
-</html>
+{% extends "base.html" %}
+{% block content %}
+    {{test}}
+{% for row in info %}
+ <tr>
+     {% for elem in row %}
+     <td>{{elem}}</td>
+     {% endfor %}
+ </tr>
+<br/>
+{% endfor %}
+
+{% endblock content %}
