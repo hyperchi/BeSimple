@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+    {{test}}
+{% for row in info %}
+ <tr>
+     {% for elem in row %}
+     <td>{{elem}}</td>
+     {% endfor %}
+ </tr>
+<br/>
+{% endfor %}
+
+{% endblock content %}
