@@ -5,3 +5,5 @@
 
 # ignore generated data file
 *.csv
+*.json
+*.log*

@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
     {{test}}
-{% for row in info %}
  <tr>
-     {% for elem in row %}
+     {% for elem in info %}
      <td>{{elem}}</td>
      {% endfor %}
  </tr>
 <br/>
-{% endfor %}
 
+<form action="." method="POST">
+        <input type="text" name="text">
+        <input type="submit" name="index" value="Send">
+    </form>
 {% endblock content %}
