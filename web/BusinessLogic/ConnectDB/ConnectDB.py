@@ -27,6 +27,9 @@ class DatabaseQuery(object):
                   "Sector"  : "Sector",
                   "Industry": "Industry"
                 }
+    @staticmethod
+    def stocks_fields():
+        return ["id", "Symbol", "Name", "Exchange", "IPOyear", "Sector", "Industry"]
 
     @staticmethod
     def get_stocks():
@@ -59,7 +62,7 @@ class ConnectDB(object):
         self.host = "localhost"
         self.username = "winstonchi"
         self.db_name = "besimple"
-        self.stocks_table_attributes = DatabaseQuery.stocks_schema().keys()
+        self.stocks_table_attributes = DatabaseQuery.stocks_fields()
 
     # getter function to retrieve data from db
     def basic_getter(self, query):
@@ -94,9 +97,9 @@ class ConnectDB(object):
         query = "SELECT * FROM stocks " \
                 "    WHERE Symbol={open_quote}{Symbol}{close_quote}"\
                      .format(open_quote="'", Symbol=ticker, close_quote="'")
-        print query
-        print self.basic_getter(query)
-        return zip(self.basic_getter(query), self.stocks_table_attributes)
+        #print self.stocks_table_attributes
+        #print self.basic_getter(query)
+        return zip(self.stocks_table_attributes, self.basic_getter(query)[0])
 
     def get_stock_recent_price(self):
         pass
