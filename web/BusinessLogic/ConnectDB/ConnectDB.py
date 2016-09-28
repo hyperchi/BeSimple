@@ -94,15 +94,27 @@ class ConnectDB(object):
             print("something went wrong: {}".format(e))
 
     def get_stock_info(self, ticker="*"):
-        query = "SELECT * FROM stocks " \
+        if (ticker == "*"):
+            query = "SELECT * FROM stocks"
+            return self.basic_getter(query)
+        else:
+            query = "SELECT * FROM stocks " \
                 "    WHERE Symbol={open_quote}{Symbol}{close_quote}"\
                      .format(open_quote="'", Symbol=ticker, close_quote="'")
-        #print self.stocks_table_attributes
-        #print self.basic_getter(query)
-        return zip(self.stocks_table_attributes, self.basic_getter(query)[0])
+            return self.basic_getter(query)[0]
 
     def get_stock_recent_price(self):
         pass
 
     def get_sector_company_list(self):
         pass
+
+    def get_sector_company_list(self, sector="*"):
+        if (sector == "*"):
+            query = "SELECT Sector, Symbol, Name FROM Stocks"
+            return self.basic_getter(query)
+        else:
+            query = "SELECT Sector, Symbol, Name FROM stocks " \
+                    " WHERE Sector={open_quote}{Sector}{close_quote}"\
+                .format(open_quote="'", Sector=sector, close_quote="'")
+            return self.basic_getter(query)
