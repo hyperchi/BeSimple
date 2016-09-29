@@ -7,3 +7,7 @@
 *.csv
 *.json
 *.log*
+
+#ignore packages
+node_modules
+bower_components
