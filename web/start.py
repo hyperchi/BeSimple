@@ -15,6 +15,10 @@ business_logic = BusinessLogic.BusinessLogic()
 def main(info=""):
     return render_template('index.html', info=info)
 
+@app.route('/test')
+def hello():
+    return render_template('test.html')
+
 @app.route('/', methods=['POST'])
 def main_post():
     text = request.form['text']
@@ -27,7 +31,7 @@ def main_post():
     return render_template("index.html", info=stock_info)
 
 if __name__ == "__main__":
-    handler = RotatingFileHandler('../logs/main.log', maxBytes=10000, backupCount=1)
+    handler = RotatingFileHandler('logs/main.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
     app.run(debug=True)
